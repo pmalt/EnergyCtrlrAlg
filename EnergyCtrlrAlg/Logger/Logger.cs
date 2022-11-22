@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace EnergyCtrlrAlg.Logger
-{
-    // todo start this
+{ 
     public class Logger : ILogger
     {
         private List<LogMessage> _logs = new();
