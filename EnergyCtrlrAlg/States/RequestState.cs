@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+
 namespace EnergyCtrlrAlg.States
 {
     public abstract class RequestState
@@ -34,7 +36,7 @@ namespace EnergyCtrlrAlg.States
         /// <summary>
         /// request charge packet and change state if called by decideRequest
         /// </summary>
-        public abstract void RequestChargeHandle();
+        public abstract Task RequestChargeHandle();
 
         /// <summary>
         /// request urgent charging, change state to UrgentState

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace EnergyCtrlrAlg
 {
@@ -49,12 +50,13 @@ namespace EnergyCtrlrAlg
         /// accept charge request if enough energy available, deny otherwise
         /// </summary>
         /// <returns>true if charge request accepted, false if not</returns>
-        public bool ChargeAccepted()
+        public async Task<bool> ChargeAccepted()
         {
             decimal available = this._foreCast.Capacity;
             decimal requested = (decimal) 0.0;
             if (available < requested)
             {
+                // todo log correctly, have pointer to Request
                 _logger.Log("", false, -1, -1);
                 return false;
             }

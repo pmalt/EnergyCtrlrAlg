@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 
 namespace EnergyCtrlrAlg.States
 {
@@ -22,10 +23,11 @@ namespace EnergyCtrlrAlg.States
             }
         }
 
-        public override void RequestChargeHandle()
+        public override async Task RequestChargeHandle()
         {
+            bool chargeAccepted = await this.Ctrlr.ChargeAccepted();
             // request charge from cp
-            if (!this.Ctrlr.ChargeAccepted() && !urgentRequested)
+            if (!chargeAccepted && !urgentRequested)
             {
                 this.context.TransitionTo(new NeutralState(this.Ctrlr));
             }

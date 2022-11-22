@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+
 namespace EnergyCtrlrAlg.States
 {
     public class ChargedState : RequestState
@@ -11,7 +13,7 @@ namespace EnergyCtrlrAlg.States
             // do nothing
         }
 
-        public override void RequestChargeHandle()
+        public override async Task RequestChargeHandle()
         {
             
         }
