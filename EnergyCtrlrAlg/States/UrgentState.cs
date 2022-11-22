@@ -6,16 +6,16 @@ namespace EnergyCtrlrAlg.States
     public class UrgentState : RequestState
     {
         private int _requestProbability = 100;
-        private bool urgentRequested = false;
+        private bool _urgentRequested = false;
         private SimultaneityCtrlr Ctrlr;
 
        
-        public override void DecideRequestHandle()
+        public override async void DecideRequestHandle()
         {
             Random rand = new Random();
             if (rand.Next(0, 99) < _requestProbability)
             {
-                RequestChargeHandle();
+                await RequestChargeHandle();
             }
             else
             {
@@ -27,7 +27,7 @@ namespace EnergyCtrlrAlg.States
         {
             bool chargeAccepted = await this.Ctrlr.ChargeAccepted();
             // request charge from cp
-            if (!chargeAccepted && !urgentRequested)
+            if (!chargeAccepted && !_urgentRequested)
             {
                 this.context.TransitionTo(new NeutralState(this.Ctrlr));
             }
@@ -35,7 +35,7 @@ namespace EnergyCtrlrAlg.States
 
         public override void RequestUrgentHandle()
         {
-            this.urgentRequested = true;
+            this._urgentRequested = true;
         }
 
         public override void ChangeProbabilityHandle(int newProb)

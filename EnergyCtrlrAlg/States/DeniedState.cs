@@ -9,13 +9,13 @@ namespace EnergyCtrlrAlg.States
         private SimultaneityCtrlr Ctrlr;
 
 
-        public override void DecideRequestHandle()
+        public override async void DecideRequestHandle()
         {
             // now requests charge with 20% probability
             Random rand = new Random();
             if (rand.Next(0,100) < _requestProbability)
             {
-                RequestChargeHandle();
+                await RequestChargeHandle();
             }
             else
             {

@@ -57,12 +57,12 @@ namespace EnergyCtrlrAlg
             if (available < requested)
             {
                 // todo log correctly, have pointer to Request
-                _logger.Log("", false, -1, -1);
+                await _logger.Log("", false, -1, -1);
                 return false;
             }
             else
             {
-                _logger.Log("", true, -1, -1);
+                await _logger.Log("", true, -1, -1);
                 return true;
             }
         }
