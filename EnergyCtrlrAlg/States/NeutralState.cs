@@ -15,7 +15,10 @@ namespace EnergyCtrlrAlg.States
             Random rand = new Random();
             if (rand.Next(0,100) < _requestProbability)
             {
-                await RequestChargeHandle();
+                if (this.context.Soc < 100)
+                {
+                    await RequestChargeHandle();
+                }
             }
             else
             {
@@ -24,13 +27,13 @@ namespace EnergyCtrlrAlg.States
         }
 
         public override async Task RequestChargeHandle()
-        {
+        { 
             bool chargeAccepted = await this.Ctrlr.ChargeAccepted();
-           // send message to cp
-           if (!chargeAccepted && !_urgentRequested)
-           {
-               this.context.TransitionTo(new DeniedState(this.Ctrlr));
-           }
+            // send message to cp
+            if (!chargeAccepted && !this._urgentRequested)
+            {
+                this.context.TransitionTo(new DeniedState(this.Ctrlr));
+            }
         }
 
         public override void RequestUrgentHandle()

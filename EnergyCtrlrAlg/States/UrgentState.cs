@@ -15,7 +15,10 @@ namespace EnergyCtrlrAlg.States
             Random rand = new Random();
             if (rand.Next(0, 99) < _requestProbability)
             {
-                await RequestChargeHandle();
+                if (this.context.Soc < 100)
+                {
+                    await RequestChargeHandle();
+                }
             }
             else
             {
