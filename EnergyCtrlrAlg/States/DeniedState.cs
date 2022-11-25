@@ -15,7 +15,7 @@ namespace EnergyCtrlrAlg.States
             Random rand = new Random();
             if (rand.Next(0,100) < _requestProbability)
             {
-                if (this.context.Soc < 100)
+                if (this.Context.Soc < 100)
                 {
                     await RequestChargeHandle();
                 }
@@ -31,13 +31,13 @@ namespace EnergyCtrlrAlg.States
             bool chargeAccepted = await this.Ctrlr.ChargeAccepted();
             if (chargeAccepted)
             {
-                this.context.TransitionTo(new NeutralState(this.Ctrlr));
+                this.Context.TransitionTo(new NeutralState(this.Ctrlr));
             }
         }
 
         public override void RequestUrgentHandle()
         {
-            this.context.TransitionTo(new UrgentState(this.Ctrlr));
+            this.Context.TransitionTo(new UrgentState(this.Ctrlr));
         }
 
         public override void ChangeProbabilityHandle(int newProb)
@@ -47,6 +47,7 @@ namespace EnergyCtrlrAlg.States
 
         public DeniedState(SimultaneityCtrlr ctrlr) : base(ctrlr)
         {
+            Ctrlr = ctrlr;
         }
     }
 }

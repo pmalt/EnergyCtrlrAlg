@@ -1,6 +1,6 @@
 using System;
 
-namespace EnergyCtrlrAlg
+namespace EnergyCtrlrAlg.Logger
 {
     public class LogMessage
     {

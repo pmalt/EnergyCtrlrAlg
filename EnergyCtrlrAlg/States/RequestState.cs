@@ -4,7 +4,7 @@ namespace EnergyCtrlrAlg.States
 {
     public abstract class RequestState
     {
-        protected FlexibilityResource context;
+        protected FlexibilityResource Context;
         
         /// <summary>
         /// probability a request is made in %
@@ -25,7 +25,7 @@ namespace EnergyCtrlrAlg.States
 
         public void SetContext(FlexibilityResource ctx)
         {
-            this.context = ctx;
+            this.Context = ctx;
         }
 
         /// <summary>
