@@ -8,7 +8,7 @@ namespace EnergyCtrlrAlg
         /// indicates current state of charge of FR
         /// max 100, min 0
         /// </summary>
-        /// todo update if charge accepted
+        /// todo update soc if charge accepted
         public int Soc;
         
         /// <summary>

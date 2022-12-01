@@ -15,6 +15,7 @@ namespace EnergyCtrlrAlg.States
             Random rand = new Random();
             if (rand.Next(0,100) < _requestProbability)
             {
+                // only request charge when battery is not fully charged
                 if (this.Context.Soc < 100)
                 {
                     await RequestChargeHandle();
