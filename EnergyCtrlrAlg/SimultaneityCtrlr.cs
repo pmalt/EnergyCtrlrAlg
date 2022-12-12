@@ -12,15 +12,12 @@ namespace EnergyCtrlrAlg
         public List<FlexibilityResource> AllFrs;
 
         private List<ForecastedBlock> _foreCast;
+        
 
-        private Logger.Logger _logger;
-
-
-        public SimultaneityCtrlr(List<ForecastedBlock> forecast, List<FlexibilityResource> allFrs, Logger.Logger logger)
+        public SimultaneityCtrlr(List<ForecastedBlock> forecast, List<FlexibilityResource> allFrs)
         {
             this._foreCast = forecast;
             this.AllFrs = allFrs;
-            _logger = logger;
         }
         
         public void AddFr(FlexibilityResource resource)
@@ -57,12 +54,12 @@ namespace EnergyCtrlrAlg
             if (available < requested)
             {
                 // todo log correctly, have pointer to Request
-                await _logger.Log("", false, -1, -1);
+                //await _logger.Log("", false, -1, -1);
                 return false;
             }
             else
             {
-                await _logger.Log("", true, -1, -1);
+                //await _logger.Log("", true, -1, -1);
                 return true;
             }
         }
