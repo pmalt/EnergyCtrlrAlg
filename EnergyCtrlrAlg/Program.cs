@@ -9,12 +9,9 @@ namespace EnergyCtrlrAlg
         {
             // startComponents
             // todo foreach period: each FR decides about requesting charge, CP accepts or denies
-            // create string for every action 
-            // have string[] to collect output for now
             var forecast = new List<ForecastedBlock>();
             var allFrs = new List<FlexibilityResource>();        
             var ctrlr = new SimultaneityCtrlr(forecast, allFrs);
-            // todo define output
             string[] output = new string[] { };
             File.WriteAllLines("/home/malte/RiderProjects/EnergyCtrlrAlg", output);
         }

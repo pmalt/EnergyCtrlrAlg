@@ -53,7 +53,7 @@ namespace EnergyCtrlrAlg
             decimal requested = (decimal) 0.0;
             if (available < requested)
             {
-                // todo log everything in a string, create method for that
+                // todo log everything in a string
                 return false;
             }
             else
