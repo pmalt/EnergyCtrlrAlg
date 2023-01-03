@@ -53,13 +53,11 @@ namespace EnergyCtrlrAlg
             decimal requested = (decimal) 0.0;
             if (available < requested)
             {
-                // todo log correctly, have pointer to Request
-                //await _logger.Log("", false, -1, -1);
+                // todo log everything in a string, create method for that
                 return false;
             }
             else
             {
-                //await _logger.Log("", true, -1, -1);
                 return true;
             }
         }
