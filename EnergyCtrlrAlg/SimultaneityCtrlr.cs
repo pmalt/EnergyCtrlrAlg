@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using EnergyCtrlrAlg.States;
 
 namespace EnergyCtrlrAlg
 {
@@ -54,6 +55,8 @@ namespace EnergyCtrlrAlg
             if (available < requested)
             {
                 // todo log everything in a string
+                // access all necessary info: (fr id, soc(b/a), state(b/a), Ctrlr time, request accepted (y/n))
+                OutputWriter.Write(0, 0, 100, new NeutralState(this), new NeutralState(this), "", false);
                 return false;
             }
             else
