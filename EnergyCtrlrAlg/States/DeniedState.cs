@@ -11,7 +11,6 @@ namespace EnergyCtrlrAlg.States
 
         public override async void DecideRequestHandle()
         {
-            // now requests charge with 20% probability
             Random rand = new Random();
             if (rand.Next(0,100) < _requestProbability)
             {
