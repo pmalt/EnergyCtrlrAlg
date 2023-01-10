@@ -39,11 +39,6 @@ namespace EnergyCtrlrAlg.States
             this.Context.TransitionTo(new UrgentState(this.Ctrlr));
         }
 
-        public override void ChangeProbabilityHandle(int newProb)
-        {
-            this._requestProbability = newProb;
-        }
-
         public DeniedState(SimultaneityCtrlr ctrlr) : base(ctrlr)
         {
             Ctrlr = ctrlr;

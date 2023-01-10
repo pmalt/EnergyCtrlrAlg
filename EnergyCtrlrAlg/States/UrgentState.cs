@@ -41,11 +41,6 @@ namespace EnergyCtrlrAlg.States
             this._urgentRequested = true;
         }
 
-        public override void ChangeProbabilityHandle(int newProb)
-        {
-            this._requestProbability = newProb;
-        }
-
         public UrgentState(SimultaneityCtrlr ctrlr) : base(ctrlr)
         {
             Ctrlr = ctrlr;

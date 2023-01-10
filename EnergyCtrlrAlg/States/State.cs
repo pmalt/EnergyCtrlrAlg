@@ -42,11 +42,5 @@ namespace EnergyCtrlrAlg.States
         /// request urgent charging, change state to UrgentState
         /// </summary>
         public abstract void RequestUrgentHandle();
-
-        /// <summary>
-        /// method to change request probability 
-        /// </summary>
-        /// <param name="newProb">percent number that probability should be changed to</param>
-        public abstract void ChangeProbabilityHandle(int newProb);
     }
 }
