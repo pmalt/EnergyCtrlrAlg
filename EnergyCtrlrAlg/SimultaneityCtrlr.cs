@@ -67,6 +67,7 @@ namespace EnergyCtrlrAlg
                 string output =
                     $"{fr.FrId}, {fr.Soc}, {fr.Soc + 5}, {state}, timeslot, {true}";
                 await File.AppendAllTextAsync("/home/malte/RiderProjects/EnergyCtrlrAlg", output, Encoding.UTF8);
+                // todo decide correct amount of charging
                 fr.Soc += 5;
                 return true;
             }
