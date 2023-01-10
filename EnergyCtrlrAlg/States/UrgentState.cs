@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace EnergyCtrlrAlg.States
 {
-    public class UrgentState : RequestState
+    public class UrgentState : State
     {
         private int _requestProbability = 100;
         private bool _urgentRequested = false;

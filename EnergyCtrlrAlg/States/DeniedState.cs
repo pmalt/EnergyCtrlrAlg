@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace EnergyCtrlrAlg.States
 {
-    public class DeniedState : RequestState
+    public class DeniedState : State
     {
         private int _requestProbability = 20;
         private SimultaneityCtrlr Ctrlr;

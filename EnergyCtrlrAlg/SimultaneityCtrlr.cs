@@ -50,13 +50,13 @@ namespace EnergyCtrlrAlg
         /// accept charge request if enough energy available, deny otherwise
         /// </summary>
         /// <returns>true if charge request accepted, false if not</returns>
-        public async Task<bool> ChargeAccepted(FlexibilityResource fr, RequestState state)
+        public async Task<bool> ChargeAccepted(FlexibilityResource fr, State state)
         {
             decimal available = this._foreCast.Capacity;
             decimal requested = (decimal) 0.0;
             if (available < requested)
             {
-                // access all necessary info: (fr id, soc(b/a), state(b/a), Ctrlr time, request accepted (y/n))
+                // access all necessary info: (fr id, soc(b/a), state, Ctrlr time, request accepted (y/n))
                 string output =
                     $"{fr.FrId}, {fr.Soc}, {fr.Soc}, {state}, timeslot, {false}";
                 await File.AppendAllTextAsync("/home/malte/RiderProjects/EnergyCtrlrAlg", output, Encoding.UTF8);

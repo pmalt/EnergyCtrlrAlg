@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 
 namespace EnergyCtrlrAlg.States
 {
-    public abstract class RequestState
+    public abstract class State
     {
         protected FlexibilityResource Context;
         
@@ -18,7 +18,7 @@ namespace EnergyCtrlrAlg.States
         /// </summary>
         private bool _urgentRequested = false;
 
-        public RequestState(SimultaneityCtrlr ctrlr)
+        public State(SimultaneityCtrlr ctrlr)
         {
             _ctrlr = ctrlr;
         }

@@ -34,15 +34,15 @@ namespace EnergyCtrlrAlg
         /// </summary>
         public int FrId;
 
-        private RequestState _state;
+        private State _state;
         
-        public FlexibilityResource(RequestState initialState, int frId)
+        public FlexibilityResource(State initialState, int frId)
         {
             this.TransitionTo(initialState);
             this.FrId = frId;
         }
         
-        public void TransitionTo(RequestState newState)
+        public void TransitionTo(State newState)
         {
             this._state = newState;
             this._state.SetContext(this);

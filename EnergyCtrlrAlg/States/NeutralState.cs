@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace EnergyCtrlrAlg.States
 {
-    public class NeutralState : RequestState
+    public class NeutralState : State
     {
         private int _requestProbability = 50;
         private SimultaneityCtrlr Ctrlr;
