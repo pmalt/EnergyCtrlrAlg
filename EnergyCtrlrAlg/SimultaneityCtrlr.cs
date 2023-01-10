@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 using EnergyCtrlrAlg.States;
 
@@ -48,18 +50,24 @@ namespace EnergyCtrlrAlg
         /// accept charge request if enough energy available, deny otherwise
         /// </summary>
         /// <returns>true if charge request accepted, false if not</returns>
-        public async Task<bool> ChargeAccepted(FlexibilityResource fr)
+        public async Task<bool> ChargeAccepted(FlexibilityResource fr, RequestState state)
         {
             decimal available = this._foreCast.Capacity;
             decimal requested = (decimal) 0.0;
             if (available < requested)
             {
                 // access all necessary info: (fr id, soc(b/a), state(b/a), Ctrlr time, request accepted (y/n))
-                OutputWriter.Write(fr.FrId, fr.Soc, fr.Soc + 1, new DeniedState(this), new NeutralState(this), "", await this.ChargeAccepted(fr));
+                string output =
+                    $"{fr.FrId}, {fr.Soc}, {fr.Soc}, {state}, timeslot, {false}";
+                await File.AppendAllTextAsync("/home/malte/RiderProjects/EnergyCtrlrAlg", output, Encoding.UTF8);
                 return false;
             }
             else
             {
+                string output =
+                    $"{fr.FrId}, {fr.Soc}, {fr.Soc + 5}, {state}, timeslot, {true}";
+                await File.AppendAllTextAsync("/home/malte/RiderProjects/EnergyCtrlrAlg", output, Encoding.UTF8);
+                fr.Soc += 5;
                 return true;
             }
         }

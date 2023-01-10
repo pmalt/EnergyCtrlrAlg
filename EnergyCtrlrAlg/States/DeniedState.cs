@@ -27,7 +27,7 @@ namespace EnergyCtrlrAlg.States
 
         public override async Task RequestChargeHandle(FlexibilityResource fr)
         {
-            bool chargeAccepted = await this.Ctrlr.ChargeAccepted(fr);
+            bool chargeAccepted = await this.Ctrlr.ChargeAccepted(fr, this);
             if (chargeAccepted)
             {
                 this.Context.TransitionTo(new NeutralState(this.Ctrlr));

@@ -28,7 +28,7 @@ namespace EnergyCtrlrAlg.States
 
         public override async Task RequestChargeHandle(FlexibilityResource fr)
         {
-            bool chargeAccepted = await this.Ctrlr.ChargeAccepted(fr);
+            bool chargeAccepted = await this.Ctrlr.ChargeAccepted(fr, this);
             // request charge from cp
             if (!chargeAccepted && !_urgentRequested)
             {
