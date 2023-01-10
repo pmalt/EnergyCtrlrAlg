@@ -31,12 +31,12 @@ namespace EnergyCtrlrAlg.States
         /// <summary>
         /// use RequestProbability to decide whether or not to request a charge
         /// </summary>
-        public abstract void DecideRequestHandle();
+        public abstract void DecideRequestHandle(FlexibilityResource fr);
 
         /// <summary>
         /// request charge packet and change state if called by decideRequest
         /// </summary>
-        public abstract Task RequestChargeHandle();
+        public abstract Task RequestChargeHandle(FlexibilityResource fr);
 
         /// <summary>
         /// request urgent charging, change state to UrgentState

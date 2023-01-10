@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace EnergyCtrlrAlg
 {
@@ -14,7 +15,7 @@ namespace EnergyCtrlrAlg
             var ctrlr = new SimultaneityCtrlr(forecast, allFrs);
             // todo add outputWriter lines to output[]
             string[] output = new string[] { };
-            File.WriteAllLines("/home/malte/RiderProjects/EnergyCtrlrAlg", output);
+            File.AppendAllLines("/home/malte/RiderProjects/EnergyCtrlrAlg", output, Encoding.UTF8);
         }
     }
 }

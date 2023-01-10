@@ -48,15 +48,14 @@ namespace EnergyCtrlrAlg
         /// accept charge request if enough energy available, deny otherwise
         /// </summary>
         /// <returns>true if charge request accepted, false if not</returns>
-        public async Task<bool> ChargeAccepted()
+        public async Task<bool> ChargeAccepted(FlexibilityResource fr)
         {
             decimal available = this._foreCast.Capacity;
             decimal requested = (decimal) 0.0;
             if (available < requested)
             {
-                // todo log everything in a string
                 // access all necessary info: (fr id, soc(b/a), state(b/a), Ctrlr time, request accepted (y/n))
-                OutputWriter.Write(0, 0, 100, new NeutralState(this), new NeutralState(this), "", false);
+                OutputWriter.Write(fr.FrId, fr.Soc, fr.Soc + 1, new DeniedState(this), new NeutralState(this), "", await this.ChargeAccepted(fr));
                 return false;
             }
             else

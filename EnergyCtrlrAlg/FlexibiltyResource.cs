@@ -49,14 +49,14 @@ namespace EnergyCtrlrAlg
             this._state.SetContext(this);
         }
 
-        public void DecideRequest()
+        public void DecideRequest(FlexibilityResource fr)
         {
-            this._state.DecideRequestHandle();
+            this._state.DecideRequestHandle(fr);
         }
 
         public void RequestCharge()
         {
-            this._state.RequestChargeHandle();
+            this._state.RequestChargeHandle(this);
         }
 
         public void RequestUrgent()

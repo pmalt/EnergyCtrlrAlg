@@ -9,14 +9,14 @@ namespace EnergyCtrlrAlg.States
         private SimultaneityCtrlr Ctrlr;
 
 
-        public override async void DecideRequestHandle()
+        public override async void DecideRequestHandle(FlexibilityResource fr)
         {
             Random rand = new Random();
             if (rand.Next(0,100) < _requestProbability)
             {
                 if (this.Context.Soc < 100)
                 {
-                    await RequestChargeHandle();
+                    await RequestChargeHandle(fr);
                 }
             }
             else
@@ -25,9 +25,9 @@ namespace EnergyCtrlrAlg.States
             }
         }
 
-        public override async Task RequestChargeHandle()
+        public override async Task RequestChargeHandle(FlexibilityResource fr)
         {
-            bool chargeAccepted = await this.Ctrlr.ChargeAccepted();
+            bool chargeAccepted = await this.Ctrlr.ChargeAccepted(fr);
             if (chargeAccepted)
             {
                 this.Context.TransitionTo(new NeutralState(this.Ctrlr));

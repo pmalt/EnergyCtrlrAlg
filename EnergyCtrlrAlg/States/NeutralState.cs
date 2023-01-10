@@ -9,7 +9,7 @@ namespace EnergyCtrlrAlg.States
         private SimultaneityCtrlr Ctrlr;
         private bool _urgentRequested = false;
 
-        public override async void DecideRequestHandle()
+        public override async void DecideRequestHandle(FlexibilityResource fr)
         {
             // now requests charge with 50% probability (_requestProbability = 50)
             Random rand = new Random();
@@ -18,7 +18,7 @@ namespace EnergyCtrlrAlg.States
                 // only request charge when battery is not fully charged
                 if (this.Context.Soc < 100)
                 {
-                    await RequestChargeHandle();
+                    await RequestChargeHandle(fr);
                 }
             }
             else
@@ -27,9 +27,9 @@ namespace EnergyCtrlrAlg.States
             }
         }
 
-        public override async Task RequestChargeHandle()
+        public override async Task RequestChargeHandle(FlexibilityResource fr)
         { 
-            bool chargeAccepted = await this.Ctrlr.ChargeAccepted();
+            bool chargeAccepted = await this.Ctrlr.ChargeAccepted(fr);
             // send message to cp
             if (!chargeAccepted && !this._urgentRequested)
             {
