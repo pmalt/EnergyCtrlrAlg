@@ -3,6 +3,8 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace EnergyCtrlrAlg
+// todo add realistic parameters
+// maybe rework json stuff, may be unnecessary
 {
     public class ForecastedBlock : IJson<ForecastedBlock>
     {

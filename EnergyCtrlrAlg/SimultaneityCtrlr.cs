@@ -14,12 +14,12 @@ namespace EnergyCtrlrAlg
         /// </summary>
         public List<FlexibilityResource> AllFrs;
 
-        private List<ForecastedBlock> _foreCast;
+        private List<ForecastedBlock> _forecast;
         
 
         public SimultaneityCtrlr(List<ForecastedBlock> forecast, List<FlexibilityResource> allFrs)
         {
-            this._foreCast = forecast;
+            this._forecast = forecast;
             this.AllFrs = allFrs;
         }
         
@@ -38,7 +38,7 @@ namespace EnergyCtrlrAlg
 
         public ForecastedBlock GetForecastByTime(DateTime time)
         {
-            foreach (var forecasted in _foreCast)
+            foreach (var forecasted in _forecast)
             {
                 if (forecasted.StartTime == time)
                     return forecasted;
@@ -52,7 +52,7 @@ namespace EnergyCtrlrAlg
         /// <returns>true if charge request accepted, false if not</returns>
         public async Task<bool> ChargeAccepted(FlexibilityResource fr, State state)
         {
-            decimal available = this._foreCast.Capacity;
+            decimal available = this._forecast.Capacity;
             decimal requested = (decimal) 0.0;
             if (available < requested)
             {
@@ -67,7 +67,8 @@ namespace EnergyCtrlrAlg
                 string output =
                     $"{fr.FrId}, {fr.Soc}, {fr.Soc + 5}, {state}, timeslot, {true}";
                 await File.AppendAllTextAsync("/home/malte/RiderProjects/EnergyCtrlrAlg", output, Encoding.UTF8);
-                // todo decide correct amount of charging
+                // for now: random battery % as charge per period
+                // realistically initially faster, slow down as battery is almost full
                 fr.Soc += 5;
                 return true;
             }
