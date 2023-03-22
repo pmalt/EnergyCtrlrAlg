@@ -4,7 +4,7 @@ namespace EnergyCtrlrAlg
 {
     class Program
     {
-        static void Main()
+        static void Main(string[] args)
         {
             // startComponents
             // todo foreach period: each FR decides about requesting charge, CP accepts or denies

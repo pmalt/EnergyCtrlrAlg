@@ -54,14 +54,17 @@ namespace EnergyCtrlrAlg
         {
             decimal available = this._forecast.Capacity;
             decimal requested = (decimal) 0.0;
+            // requested charge exceeds availability
             if (available < requested)
             {
                 // access all necessary info: (fr id, soc(b/a), state, Ctrlr time, request accepted (y/n))
                 string output =
                     $"{fr.FrId}, {fr.Soc}, {fr.Soc}, {state}, timeslot, {false}";
                 await File.AppendAllTextAsync("/home/malte/RiderProjects/EnergyCtrlrAlg", output, Encoding.UTF8);
+                fr.FrStatus = FlexibilityResource.Status.idling;
                 return false;
             }
+            // Request doesn't exceed availability, charge is accepted
             else
             {
                 string output =
@@ -70,6 +73,14 @@ namespace EnergyCtrlrAlg
                 // for now: random battery % as charge per period
                 // realistically initially faster, slow down as battery is almost full
                 fr.Soc += 5;
+                if (fr.Soc < 100)
+                {
+                    fr.FrStatus = FlexibilityResource.Status.charging;
+                }
+                else
+                {
+                    fr.FrStatus = FlexibilityResource.Status.charged;
+                }
                 return true;
             }
         }

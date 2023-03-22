@@ -19,16 +19,17 @@ namespace EnergyCtrlrAlg
         /// <summary>
         /// indicates whether urgent mode was requested
         /// </summary>
-        public bool UrgentRequested;
+        public bool UrgentRequested = false;
         
-        /// <summary>
-        /// status of FR
-        /// 0 = idling
-        /// 1 = charging
-        /// 2 = charged
-        /// </summary>
-        public int Status;
-        
+        public enum Status
+        {
+           idling,
+           charging,
+           charged
+        }
+
+        public Status FrStatus = Status.idling; 
+
         /// <summary>
         /// unique Id
         /// </summary>
@@ -36,10 +37,12 @@ namespace EnergyCtrlrAlg
 
         private State _state;
         
-        public FlexibilityResource(State initialState, int frId)
+        public FlexibilityResource(State initialState, int frId, int timeAvailable, int initialSoc)
         {
             this.TransitionTo(initialState);
             this.FrId = frId;
+            this.TimeAvailable = timeAvailable;
+            this.Soc = initialSoc;
         }
         
         public void TransitionTo(State newState)
