@@ -8,32 +8,32 @@ namespace EnergyCtrlrAlg
         /// indicates current state of charge of FR
         /// max 100, min 0
         /// </summary>
-        /// determine charge energy: capacity * efficiency
+        /// maybe use state of energy instead
         public int Soc;
         
         /// <summary>
         /// amount of time available for charging
         /// </summary>
-        public int TimeAvailable;
+        private int _timeAvailable;
         
         /// <summary>
         /// indicates whether urgent mode was requested
         /// </summary>
         public bool UrgentRequested = false;
         
-        public enum Status
+        public enum StatusEnum
         {
-           idling,
-           charging,
-           charged
+           Idling,
+           Charging,
+           Charged
         }
 
-        public Status FrStatus = Status.idling; 
+        public StatusEnum Status = StatusEnum.Idling; 
 
         /// <summary>
         /// unique Id
         /// </summary>
-        public int FrId;
+        public readonly int FrId;
 
         private State _state;
         
@@ -41,7 +41,7 @@ namespace EnergyCtrlrAlg
         {
             this.TransitionTo(initialState);
             this.FrId = frId;
-            this.TimeAvailable = timeAvailable;
+            this._timeAvailable = timeAvailable;
             this.Soc = initialSoc;
         }
         

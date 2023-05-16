@@ -9,9 +9,6 @@ namespace EnergyCtrlrAlg
 {
     public class SimultaneityCtrlr
     {
-        /// <summary>
-        /// List of all flexibility resources 
-        /// </summary>
         public List<FlexibilityResource> AllFrs;
 
         private List<ForecastedBlock> _forecast;
@@ -38,10 +35,10 @@ namespace EnergyCtrlrAlg
 
         public ForecastedBlock GetForecastByTime(DateTime time)
         {
-            foreach (var forecasted in _forecast)
+            foreach (var forecast in _forecast)
             {
-                if (forecasted.StartTime == time)
-                    return forecasted;
+                if (forecast.StartTime == time)
+                    return forecast;
             }
 
             return null;
@@ -61,7 +58,7 @@ namespace EnergyCtrlrAlg
                 string output =
                     $"{fr.FrId}, {fr.Soc}, {fr.Soc}, {state}, timeslot, {false}";
                 await File.AppendAllTextAsync("/home/malte/RiderProjects/EnergyCtrlrAlg", output, Encoding.UTF8);
-                fr.FrStatus = FlexibilityResource.Status.idling;
+                fr.Status = FlexibilityResource.StatusEnum.Idling;
                 return false;
             }
             // Request doesn't exceed availability, charge is accepted
@@ -75,11 +72,11 @@ namespace EnergyCtrlrAlg
                 fr.Soc += 5;
                 if (fr.Soc < 100)
                 {
-                    fr.FrStatus = FlexibilityResource.Status.charging;
+                    fr.Status = FlexibilityResource.StatusEnum.Charging;
                 }
                 else
                 {
-                    fr.FrStatus = FlexibilityResource.Status.charged;
+                    fr.Status = FlexibilityResource.StatusEnum.Charged;
                 }
                 return true;
             }
