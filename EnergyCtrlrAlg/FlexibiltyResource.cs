@@ -21,13 +21,9 @@ namespace EnergyCtrlrAlg
         /// </summary>
         public bool UrgentRequested = false;
         
-        public enum StatusEnum
-        {
-           Idling,
-           Charging,
-           Charged
-        }
-
+        /// <summary>
+        /// idling, charging, charged
+        /// </summary>
         public StatusEnum Status = StatusEnum.Idling; 
 
         /// <summary>
@@ -65,5 +61,12 @@ namespace EnergyCtrlrAlg
         {
             this._state.RequestUrgentHandle();
         }
+        public enum StatusEnum
+        {
+            Idling,
+            Charging,
+            Charged
+        }
+
     }
 }
