@@ -1,4 +1,6 @@
 using System;
+using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace EnergyCtrlrAlg.States
@@ -22,7 +24,12 @@ namespace EnergyCtrlrAlg.States
             }
             else
             {
-                // wait
+                // will not happen unless probability is changed
+                // (fr id, soc(before/after), state, Ctrlr time, request sent, request accepted (y/n))
+                string output =
+                    $"{fr.FrId}, {fr.Soc}, {fr.Soc}, {this}, timeslot, {false}, {false}";
+                await File.AppendAllTextAsync("/home/malte/RiderProjects/EnergyCtrlrAlg", output, Encoding.UTF8);
+                // TODO wait
             }
         }
 

@@ -54,9 +54,9 @@ namespace EnergyCtrlrAlg
             // requested charge exceeds availability
             if (available < requested)
             {
-                // access all necessary info: (fr id, soc(b/a), state, Ctrlr time, request accepted (y/n))
+                // (fr id, soc(b/a), state, Ctrlr time, request sent, request accepted (y/n))
                 string output =
-                    $"{fr.FrId}, {fr.Soc}, {fr.Soc}, {state}, timeslot, {false}";
+                    $"{fr.FrId}, {fr.Soc}, {fr.Soc}, {state}, timeslot, {true}, {false}";
                 await File.AppendAllTextAsync("/home/malte/RiderProjects/EnergyCtrlrAlg", output, Encoding.UTF8);
                 fr.Status = FlexibilityResource.StatusEnum.Idling;
                 return false;
@@ -64,8 +64,9 @@ namespace EnergyCtrlrAlg
             // Request doesn't exceed availability, charge is accepted
             else
             {
+                // (fr id, soc(b/a), state, Ctrlr time, request sent, request accepted (y/n))
                 string output =
-                    $"{fr.FrId}, {fr.Soc}, {fr.Soc + 5}, {state}, timeslot, {true}";
+                    $"{fr.FrId}, {fr.Soc}, {fr.Soc + 5}, {state}, timeslot, {true}, {true}";
                 await File.AppendAllTextAsync("/home/malte/RiderProjects/EnergyCtrlrAlg", output, Encoding.UTF8);
                 // for now: random battery % as charge per period
                 // realistically initially faster, slow down as battery is almost full
