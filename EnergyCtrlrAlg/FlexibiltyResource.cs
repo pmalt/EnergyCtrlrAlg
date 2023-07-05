@@ -29,11 +29,11 @@ namespace EnergyCtrlrAlg
         /// <summary>
         /// unique Id
         /// </summary>
-        public readonly int FrId;
+        public readonly string FrId;
 
         private State _state;
         
-        public FlexibilityResource(State initialState, int frId, int timeAvailable, int initialSoc)
+        public FlexibilityResource(State initialState, string frId, int timeAvailable, int initialSoc)
         {
             this.TransitionTo(initialState);
             this.FrId = frId;
