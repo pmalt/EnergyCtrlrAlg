@@ -29,7 +29,6 @@ namespace EnergyCtrlrAlg.States
                 string output =
                     $"{fr.FrId}, {fr.Soc}, {fr.Soc}, {this}, timeslot, {false}, {false}";
                 await File.AppendAllTextAsync("/home/malte/RiderProjects/EnergyCtrlrAlg", output, Encoding.UTF8);
-                // TODO wait
             }
         }
 

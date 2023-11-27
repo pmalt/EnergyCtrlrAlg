@@ -1,3 +1,4 @@
+using System;
 using EnergyCtrlrAlg.States;
 
 namespace EnergyCtrlrAlg
@@ -33,7 +34,7 @@ namespace EnergyCtrlrAlg
 
         private State _state;
         
-        public FlexibilityResource(State initialState, string frId, int timeAvailable, int initialSoc)
+        public FlexibilityResource(State initialState, string frId, int timeAvailable, int initialSoc, TimeSpan arrivalTime)
         {
             this.TransitionTo(initialState);
             this.FrId = frId;
